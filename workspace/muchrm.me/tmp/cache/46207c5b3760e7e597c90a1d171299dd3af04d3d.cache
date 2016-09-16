@@ -1,0 +1,2 @@
+1474021988
+a:3:{s:13:"columnHeaders";a:2:{i:0;a:3:{s:4:"name";s:11:"rt:userType";s:10:"columnType";s:9:"DIMENSION";s:8:"dataType";s:6:"STRING";}i:1;a:3:{s:4:"name";s:14:"rt:activeUsers";s:10:"columnType";s:6:"METRIC";s:8:"dataType";s:7:"INTEGER";}}s:19:"totalsForAllResults";a:1:{s:14:"rt:activeUsers";s:1:"1";}s:4:"time";i:1474021968;}

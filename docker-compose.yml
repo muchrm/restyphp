@@ -1,0 +1,55 @@
+version: '2'
+
+services:
+### PHP-FPM Container #######################################
+
+    php-fpm:
+        container_name: php-fpm
+        build:
+            context: ./php-fpm
+        volumes_from:
+            - volumes_source
+        expose:
+            - "9000"
+
+### Nginx Server Container ##################################
+    nginx:
+        container_name: nginx
+        build:
+          context: ./openresty
+        volumes:
+            - ./openresty/nginx/conf:/opt/openresty/nginx/conf
+            - ./openresty/nginx/logs:/opt/openresty/nginx/logs
+        volumes_from:
+            - volumes_source
+        ports:
+            - "80:80"
+            - "443:443"
+        links:
+            - php-fpm
+### MariaDB Container #######################################
+
+    mariadb:
+        container_name: mariadb
+        build: ./mariadb
+        volumes_from:
+            - volumes_data
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: muchrm
+            MYSQL_USER: muchrm
+            MYSQL_PASSWORD: 1vRUtES5ydvvDz)P&
+            MYSQL_ROOT_PASSWORD: soklong8971
+### Application Code Container ######################
+
+    volumes_source:
+        build: ./workspace
+        volumes:
+            - ./workspace:/var/www
+### Databases Data Container ################################
+
+    volumes_data:
+        build: ./volumes
+        volumes:
+            - ./volumes/mariadb:/var/lib/mariadb
