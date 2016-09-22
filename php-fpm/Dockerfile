@@ -1,71 +1,42 @@
-#
-#--------------------------------------------------------------------------
-# Image Setup
-#--------------------------------------------------------------------------
-#
+FROM php:7.0-fpm-alpine
 
-FROM php:5.6-fpm
-
-MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
-
-#
-#--------------------------------------------------------------------------
-# Software's Installation
-#--------------------------------------------------------------------------
-#
-# Installing tools and PHP extentions using "apt", "docker-php", "pecl",
-#
-
-# Install "curl", "libmemcached-dev", "libpq-dev", "libjpeg-dev",
-#         "libpng12-dev", "libfreetype6-dev", "libssl-dev", "libmcrypt-dev",
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apk update && \
+    apk add \
         curl \
         libmemcached-dev \
-        libz-dev \
-        libpq-dev \
-        libjpeg-dev \
-        libpng12-dev \
-        libfreetype6-dev \
-        libssl-dev \
-        libmcrypt-dev
+        zlib-dev \
+        libjpeg-turbo-dev \
+        libpng-dev \
+        freetype-dev \
+        openssl-dev \
+        libmcrypt-dev \
+        autoconf \
+        g++ \
+        make
 
-# Install the PHP mcrypt extention
-RUN docker-php-ext-install mcrypt
+RUN docker-php-ext-install \
+                    mcrypt \
+                    pdo_mysql \
+                    zip
 
-# Install the PHP pdo_mysql extention
-RUN docker-php-ext-install pdo_mysql
 
-# Install the PHP pdo_pgsql extention
-RUN docker-php-ext-install pdo_pgsql
-
-# Install the zip extention
-RUN docker-php-ext-install zip
-
-#####################################
-# gd:
-#####################################
-
-# Install the PHP gd library
-RUN docker-php-ext-install gd && \
-    docker-php-ext-configure gd \
+RUN docker-php-ext-configure gd \
         --enable-gd-native-ttf \
         --with-jpeg-dir=/usr/lib \
         --with-freetype-dir=/usr/include/freetype2 && \
     docker-php-ext-install gd
-    # Install the PHP mysql extention
-RUN apt-get clean && apt-get -y update
-RUN docker-php-ext-install mysql
+
 
 ADD ./php.ini /usr/local/etc/php/conf.d
 ADD ./php.pool.conf /usr/local/etc/php-fpm.d/
 
-RUN rm -r /var/lib/apt/lists/*
-
-RUN usermod -u 1000 www-data
+RUN rm -rf /var/cache/apk/* \
+    && find / -type f -iname \*.apk-new -delete \
+    && rm -rf /var/cache/apk/*
 
 WORKDIR /var/www/
 
+RUN deluser www-data && adduser -D -H -u 1000 -s /bin/bash www-data
 CMD ["php-fpm"]
 
 EXPOSE 9000

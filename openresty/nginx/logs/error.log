@@ -5076,3 +5076,77 @@ Stack trace:
 2016/09/15 07:49:24 [emerg] 14#0: bind() to 0.0.0.0:80 failed (98: Address in use)
 2016/09/15 07:49:24 [emerg] 14#0: bind() to [::]:80 failed (98: Address in use)
 2016/09/15 07:49:24 [emerg] 14#0: still could not bind()
+2016/09/22 12:03:16 [error] 5#0: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muchrm.pk_system_config' doesn't exist in /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:104
+Stack trace:
+#0 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(104): PDO->query('SELECT name, va...')
+#1 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(833): Doctrine\DBAL\Driver\PDOConnection->query('SELECT name, va...')
+#2 /var/www/web/app/modules/database/src/Connection.php(178): Doctrine\DBAL\Connection->executeQuery('SELECT name, va...', Array, Array, NULL)
+#3 /var/www/web/app/modules/config/src/ConfigManager.php(135): Pagekit\Database\Connection->executeQuery('SELECT name, va...')
+#4 /var/www/web/app/modules/config/src/ConfigManager.php(60): Pagekit\Config\ConfigManager->fetch('cookie')
+#5 /var/www/web/app/modules/config/index.php(18): Pagekit\Config\ConfigManager->has('cookie')
+#6 [internal function]: Page" while reading response header from upstream, client: 162.158.167.159, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "muchrm.me"
+2016/09/22 12:03:16 [error] 5#0: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muchrm.pk_system_config' doesn't exist in /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:104
+Stack trace:
+#0 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(104): PDO->query('SELECT name, va...')
+#1 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(833): Doctrine\DBAL\Driver\PDOConnection->query('SELECT name, va...')
+#2 /var/www/web/app/modules/database/src/Connection.php(178): Doctrine\DBAL\Connection->executeQuery('SELECT name, va...', Array, Array, NULL)
+#3 /var/www/web/app/modules/config/src/ConfigManager.php(135): Pagekit\Database\Connection->executeQuery('SELECT name, va...')
+#4 /var/www/web/app/modules/config/src/ConfigManager.php(60): Pagekit\Config\ConfigManager->fetch('cookie')
+#5 /var/www/web/app/modules/config/index.php(18): Pagekit\Config\ConfigManager->has('cookie')
+#6 [internal function]: Page" while reading response header from upstream, client: 162.158.167.159, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "muchrm.me"
+2016/09/22 12:03:17 [error] 5#0: *4 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muchrm.pk_system_config' doesn't exist in /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:104
+Stack trace:
+#0 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(104): PDO->query('SELECT name, va...')
+#1 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(833): Doctrine\DBAL\Driver\PDOConnection->query('SELECT name, va...')
+#2 /var/www/web/app/modules/database/src/Connection.php(178): Doctrine\DBAL\Connection->executeQuery('SELECT name, va...', Array, Array, NULL)
+#3 /var/www/web/app/modules/config/src/ConfigManager.php(135): Pagekit\Database\Connection->executeQuery('SELECT name, va...')
+#4 /var/www/web/app/modules/config/src/ConfigManager.php(60): Pagekit\Config\ConfigManager->fetch('cookie')
+#5 /var/www/web/app/modules/config/index.php(18): Pagekit\Config\ConfigManager->has('cookie')
+#6 [internal function]: Page" while reading response header from upstream, client: 162.158.167.159, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "muchrm.me"
+2016/09/22 12:05:40 [error] 5#0: *6 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muchrm.pk_system_config' doesn't exist in /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:104
+Stack trace:
+#0 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(104): PDO->query('SELECT name, va...')
+#1 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(833): Doctrine\DBAL\Driver\PDOConnection->query('SELECT name, va...')
+#2 /var/www/web/app/modules/database/src/Connection.php(178): Doctrine\DBAL\Connection->executeQuery('SELECT name, va...', Array, Array, NULL)
+#3 /var/www/web/app/modules/config/src/ConfigManager.php(135): Pagekit\Database\Connection->executeQuery('SELECT name, va...')
+#4 /var/www/web/app/modules/config/src/ConfigManager.php(60): Pagekit\Config\ConfigManager->fetch('cookie')
+#5 /var/www/web/app/modules/config/index.php(18): Pagekit\Config\ConfigManager->has('cookie')
+#6 [internal function]: Page" while reading response header from upstream, client: 162.158.167.159, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "muchrm.me"
+2016/09/22 12:05:42 [error] 5#0: *8 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muchrm.pk_system_config' doesn't exist in /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:104
+Stack trace:
+#0 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(104): PDO->query('SELECT name, va...')
+#1 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(833): Doctrine\DBAL\Driver\PDOConnection->query('SELECT name, va...')
+#2 /var/www/web/app/modules/database/src/Connection.php(178): Doctrine\DBAL\Connection->executeQuery('SELECT name, va...', Array, Array, NULL)
+#3 /var/www/web/app/modules/config/src/ConfigManager.php(135): Pagekit\Database\Connection->executeQuery('SELECT name, va...')
+#4 /var/www/web/app/modules/config/src/ConfigManager.php(60): Pagekit\Config\ConfigManager->fetch('cookie')
+#5 /var/www/web/app/modules/config/index.php(18): Pagekit\Config\ConfigManager->has('cookie')
+#6 [internal function]: Page" while reading response header from upstream, client: 162.158.167.159, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "muchrm.me"
+2016/09/22 12:05:44 [error] 5#0: *10 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muchrm.pk_system_config' doesn't exist in /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:104
+Stack trace:
+#0 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(104): PDO->query('SELECT name, va...')
+#1 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(833): Doctrine\DBAL\Driver\PDOConnection->query('SELECT name, va...')
+#2 /var/www/web/app/modules/database/src/Connection.php(178): Doctrine\DBAL\Connection->executeQuery('SELECT name, va...', Array, Array, NULL)
+#3 /var/www/web/app/modules/config/src/ConfigManager.php(135): Pagekit\Database\Connection->executeQuery('SELECT name, va...')
+#4 /var/www/web/app/modules/config/src/ConfigManager.php(60): Pagekit\Config\ConfigManager->fetch('cookie')
+#5 /var/www/web/app/modules/config/index.php(18): Pagekit\Config\ConfigManager->has('cookie')
+#6 [internal function]: Page" while reading response header from upstream, client: 162.158.167.159, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "muchrm.me"
+2016/09/22 12:05:46 [error] 5#0: *12 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muchrm.pk_system_config' doesn't exist in /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:104
+Stack trace:
+#0 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(104): PDO->query('SELECT name, va...')
+#1 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(833): Doctrine\DBAL\Driver\PDOConnection->query('SELECT name, va...')
+#2 /var/www/web/app/modules/database/src/Connection.php(178): Doctrine\DBAL\Connection->executeQuery('SELECT name, va...', Array, Array, NULL)
+#3 /var/www/web/app/modules/config/src/ConfigManager.php(135): Pagekit\Database\Connection->executeQuery('SELECT name, va...')
+#4 /var/www/web/app/modules/config/src/ConfigManager.php(60): Pagekit\Config\ConfigManager->fetch('cookie')
+#5 /var/www/web/app/modules/config/index.php(18): Pagekit\Config\ConfigManager->has('cookie')
+#6 [internal function]: Page" while reading response header from upstream, client: 162.158.167.159, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "muchrm.me"
+2016/09/22 12:07:10 [error] 5#0: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muchrm.pk_system_config' doesn't exist in /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:104
+Stack trace:
+#0 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(104): PDO->query('SELECT name, va...')
+#1 /var/www/web/app/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(833): Doctrine\DBAL\Driver\PDOConnection->query('SELECT name, va...')
+#2 /var/www/web/app/modules/database/src/Connection.php(178): Doctrine\DBAL\Connection->executeQuery('SELECT name, va...', Array, Array, NULL)
+#3 /var/www/web/app/modules/config/src/ConfigManager.php(135): Pagekit\Database\Connection->executeQuery('SELECT name, va...')
+#4 /var/www/web/app/modules/config/src/ConfigManager.php(60): Pagekit\Config\ConfigManager->fetch('cookie')
+#5 /var/www/web/app/modules/config/index.php(18): Pagekit\Config\ConfigManager->has('cookie')
+#6 [internal function]: Page" while reading response header from upstream, client: 162.158.167.159, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "muchrm.me"
+2016/09/22 12:16:24 [error] 5#0: *7 directory index of "/var/www/web/" is forbidden, client: 162.158.167.159, server: , request: "GET / HTTP/1.1", host: "muchrm.me"
+2016/09/22 12:32:14 [error] 5#0: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 162.158.167.159, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "muchrm.me"

@@ -4,24 +4,18 @@ ENV OPENRESTY_VERSION 1.9.7.3
 ENV OPENRESTY_PREFIX /opt/openresty
 ENV NGINX_PREFIX /opt/openresty/nginx
 ENV VAR_PREFIX /var/nginx
+ARG PHP_UPSTREAM=php-fpm
 
-# NginX prefix is automatically set by OpenResty to $OPENRESTY_PREFIX/nginx
-# look for $ngx_prefix in https://github.com/openresty/ngx_openresty/blob/master/util/configure
-
-RUN echo "==> Installing dependencies..." \
- && apk update \
+RUN apk update \
  && apk add --virtual build-deps \
     make gcc musl-dev \
     pcre-dev openssl-dev zlib-dev ncurses-dev readline-dev \
     curl perl \
  && mkdir -p /root/ngx_openresty \
  && cd /root/ngx_openresty \
- && echo "==> Downloading OpenResty..." \
  && curl -sSL http://openresty.org/download/openresty-${OPENRESTY_VERSION}.tar.gz | tar -xvz \
  && cd openresty-* \
- && echo "==> Configuring OpenResty..." \
  && readonly NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
- && echo "using upto $NPROC threads" \
  && ./configure \
     --prefix=$OPENRESTY_PREFIX \
     --http-client-body-temp-path=$VAR_PREFIX/client_body_temp \
@@ -39,11 +33,8 @@ RUN echo "==> Installing dependencies..." \
     --without-http_uwsgi_module \
     --without-http_scgi_module \
     -j${NPROC} \
- && echo "==> Building OpenResty..." \
  && make -j${NPROC} \
- && echo "==> Installing OpenResty..." \
  && make install \
- && echo "==> Finishing..." \
  && ln -sf $NGINX_PREFIX/sbin/nginx /usr/local/bin/nginx \
  && ln -sf $NGINX_PREFIX/sbin/nginx /usr/local/bin/openresty \
  && ln -sf $OPENRESTY_PREFIX/bin/resty /usr/local/bin/resty \
@@ -55,10 +46,15 @@ RUN echo "==> Installing dependencies..." \
  && rm -rf /var/cache/apk/* \
  && rm -rf /root/ngx_openresty
 
+
 WORKDIR $NGINX_PREFIX/
 
 ONBUILD RUN rm -rf conf/* html/*
 ONBUILD COPY nginx $NGINX_PREFIX/
+
+ADD nginx/conf $NGINX_PREFIX/conf
+RUN echo "upstream php-upstream { server ${PHP_UPSTREAM}:9000; }"
+RUN echo "upstream php-upstream { server ${PHP_UPSTREAM}:9000; }" > $NGINX_PREFIX/conf/web/upstream.conf
 
 RUN adduser -D -H -u 1000 -s /bin/bash www-data 
 

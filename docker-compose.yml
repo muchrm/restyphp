@@ -16,9 +16,10 @@ services:
     nginx:
         container_name: nginx
         build:
-          context: ./openresty
+            context: ./openresty
+            args:
+                - PHP_UPSTREAM=php-fpm
         volumes:
-            - ./openresty/nginx/conf:/opt/openresty/nginx/conf
             - ./openresty/nginx/logs:/opt/openresty/nginx/logs
         volumes_from:
             - volumes_source
@@ -44,12 +45,12 @@ services:
 ### Application Code Container ######################
 
     volumes_source:
-        build: ./workspace
+        image: tianon/true
         volumes:
-            - ./workspace:/var/www
+            - ./workspace/web:/var/www/html
 ### Databases Data Container ################################
 
     volumes_data:
-        build: ./volumes
+        image: tianon/true
         volumes:
-            - ./volumes/mariadb:/var/lib/mariadb
+            - ./volumes/mysql:/var/lib/mysql
