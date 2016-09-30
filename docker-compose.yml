@@ -39,9 +39,7 @@ services:
             - "3306:3306"
         environment:
             MYSQL_DATABASE: muchrm
-            MYSQL_USER: muchrm
-            MYSQL_PASSWORD: 1vRUtES5ydvvDz)P&
-            MYSQL_ROOT_PASSWORD: soklong8971
+            MYSQL_ROOT_PASSWORD: 1vRUtES5ydvvDz)P&
 ### Application Code Container ######################
 
     volumes_source:
